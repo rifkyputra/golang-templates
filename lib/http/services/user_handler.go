@@ -26,7 +26,6 @@ func PostUserHandler(db *sql.DB) Handler {
 
 		user := NewUserRequest{}
 		if err := json.NewDecoder(r.Body).Decode(&user); err != nil {
-			fmt.Println("1Username : %v ", err)
 			http.Error(w, http.StatusText(400), 400)
 			return
 		}
@@ -35,7 +34,6 @@ func PostUserHandler(db *sql.DB) Handler {
 
 		if err != nil {
 			http.Error(w, http.StatusText(500), 500)
-			fmt.Println("2Username : %v ", err)
 
 			return
 		}
@@ -45,7 +43,6 @@ func PostUserHandler(db *sql.DB) Handler {
 
 		value, err := db.Exec(fmt.Sprintf("INSERT INTO users (username, password) VALUES ($1, $2)"), user.Username, user.Password)
 		if err != nil {
-			fmt.Println("3Username : %v ", err)
 
 			http.Error(w, http.StatusText(500), 500)
 			return
@@ -53,14 +50,12 @@ func PostUserHandler(db *sql.DB) Handler {
 
 		aff, err := value.RowsAffected()
 		if aff < 1 {
-			fmt.Println("3Username : %v ", err)
 
 			http.Error(w, http.StatusText(500), 500)
 			return
 		}
 
 		if err != nil {
-			fmt.Println("4Username : %v ", err)
 
 			http.Error(w, http.StatusText(500), 500)
 			return
@@ -84,7 +79,7 @@ func DeleteUserHandler(db *sql.DB) Handler {
 
 	}
 }
-func getUserByIdHandler(db *sql.DB) Handler {
+func GetUserByIdHandler(db *sql.DB) Handler {
 	return func(w http.ResponseWriter, r *http.Request) {
 
 	}

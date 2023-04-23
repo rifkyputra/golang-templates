@@ -1,15 +1,14 @@
 package modularHTTP
 
 import (
+	db "ModularHTTPGo/db"
+	route "ModularHTTPGo/routers"
 	"log"
 	"net/http"
 
 	"github.com/gorilla/mux"
 	httpSwagger "github.com/swaggo/http-swagger"
 	"github.com/swaggo/swag"
-
-	db "ModularHTTPGo/db"
-	route "ModularHTTPGo/routers"
 )
 
 func StartServer(addr string) {
