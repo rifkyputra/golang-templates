@@ -1,0 +1,34 @@
+definitions:
+  modularHTTP.User:
+    properties:
+      password:
+        type: string
+      username:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /users/{id}:
+    get:
+      description: Get a user by ID
+      operationId: get-user-by-id
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/modularHTTP.User'
+        "404":
+          description: User not found
+          schema:
+            type: string
+      summary: Get a user by ID
+      tags:
+      - users
+swagger: "2.0"
